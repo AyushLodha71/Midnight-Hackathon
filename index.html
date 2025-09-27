@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Blockchain Forum</title>
+    <script src="https://cdn.jsdelivr.net/npm/web3@1.8.0/dist/web3.min.js"></script>
+    <style>
+        body { font-family: Arial, sans-serif; margin: 20px; background: #f5f5f5; }
+        .container { max-width: 800px; margin: 0 auto; background: white; padding: 20px; border-radius: 10px; }
+        .tab { background: #e0e0e0; padding: 10px; border-radius: 5px; margin-bottom: 20px; }
+        .tab button { padding: 10px 20px; margin: 0 5px; border: none; border-radius: 5px; cursor: pointer; }
+        .tab button:hover { background: #ddd; }
+        .tab button.active { background: #4CAF50; color: white; }
+        .question { background: #f9f9f9; padding: 15px; margin: 10px 0; border-radius: 5px; border-left: 4px solid #4CAF50; }
+        textarea { width: 100%; height: 100px; padding: 10px; border: 1px solid #ddd; border-radius: 5px; }
+        button { background: #4CAF50; color: white; padding: 10px 20px; border: none; border-radius: 5px; cursor: pointer; }
+        button:hover { background: #45a049; }
+        button:disabled { background: #cccccc; cursor: not-allowed; }
+        #status, #networkStatus, #balance { 
+            padding: 10px; margin: 10px 0; border-radius: 5px; 
+            background: #e7f3ff; border-left: 4px solid #2196F3;
+        }
+        .error { background: #ffebee !important; border-left: 4px solid #f44336 !important; }
+        .success { background: #e8f5e8 !important; border-left: 4px solid #4CAF50 !important; }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>🔗 Blockchain Forum</h1>
+        
+        <!-- Status Information -->
+        <div id="networkStatus">🌐 Network: Checking...</div>
+        <div id="balance">💰 Balance: Checking...</div>
+        <div id="status">⚡ Status: Connecting...</div>
+        
+        <!-- Action Buttons -->
+        <div>
+            <button onclick="refreshBalance()">🔄 Refresh Balance</button>
+            <button onclick="switchToSepolia()">🔁 Switch to Sepolia</button>
+            <button onclick="refreshQuestions()">📥 Refresh Questions</button>
+        </div>
+        
+        <!-- Tabs -->
+        <div class="tab">
+            <button onclick="showTab('all')" class="active">📋 All Questions</button>
+            <button onclick="showTab('ask')">💬 Ask Question</button>
+            <button onclick="showTab('my')">👤 My Questions</button>
+        </div>
+
+        <!-- Tab Content -->
+        <div id="allTab">
+            <h2>📋 All Questions</h2>
+            <button onclick="loadQuestions()">🔄 Load Questions</button>
+            <div id="questions"></div>
+        </div>
+
+        <div id="askTab" style="display:none">
+            <h2>💬 Ask a Question</h2>
+            <textarea id="questionText" placeholder="What would you like to ask the community?"></textarea><br>
+            <button onclick="postQuestion()">🚀 Post Question</button>
+        </div>
+
+        <div id="myTab" style="display:none">
+            <h2>👤 My Questions</h2>
+            <button onclick="loadMyQuestions()">🔄 Load My Questions</button>
+            <div id="myQuestions"></div>
+        </div>
+    </div>
+
+    <script src="app.js"></script>
+</body>
+</html>
